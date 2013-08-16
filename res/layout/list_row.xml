@@ -22,7 +22,7 @@
 			android:id="@+id/list_image"   
 	        android:layout_width="100dip"
 	        android:layout_height="100dip"
-	        android:src="@drawable/rihanna"
+	        android:src="@drawable/yahoo"
 	        />
 
         
@@ -34,7 +34,7 @@
             android:textColor="#000000" >
             
         </TextView>
-	<!-- Title Of Song-->
+	
 
     <TextView
         android:id="@+id/title"
@@ -42,9 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Rihanna Love the way lie"
+        android:text="Deals"
         android:textColor="#FFFFFF"
-        android:textSize="15dip"
+        android:textSize="20dip"
         android:textStyle="bold"
         android:typeface="sans" />
 
@@ -57,9 +57,9 @@
         android:layout_below="@id/title"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Just gona stand there and ..."
+        android:text="Deals"
         android:textColor="#FFFFFF"
-        android:textSize="10dip" />
+        android:textSize="15dip" />
 
 	<!-- Rightend Duration -->
     <TextView

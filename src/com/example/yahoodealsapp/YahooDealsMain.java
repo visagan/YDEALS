@@ -33,6 +33,7 @@ import android.os.StrictMode;
 import android.provider.Settings;
 //import android.support.v4.widget.SearchViewCompatIcs.MySearchView;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,7 +54,9 @@ import android.widget.ListView;
 public class YahooDealsMain extends Activity implements
 		SearchView.OnQueryTextListener {
 	// All static variables
-	static final String URL = "http://yodeals.herokuapp.com/hello?uid=adads&query=pizza&zip=61820";
+	static String URL = "http://yodeals.herokuapp.com/hello?uid=adads&query=pizza&zip=61820";
+	static final String SERVER_URL = "http://yodeals.herokuapp.com/hello";
+
 	// XML node keys
 	static final String KEY_SONG = "song"; // parent node
 	static final String KEY_ID = "id";
@@ -122,30 +125,56 @@ public class YahooDealsMain extends Activity implements
 					| MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
 		}
 
-		/*
-		 * SearchManager searchManager = (SearchManager)
-		 * getSystemService(Context.SEARCH_SERVICE); if (searchManager != null)
-		 * { List<SearchableInfo> searchables =
-		 * searchManager.getSearchablesInGlobalSearch();
-		 * 
-		 * SearchableInfo info =
-		 * searchManager.getSearchableInfo(getComponentName()); for
-		 * (SearchableInfo inf : searchables) { if (inf.getSuggestAuthority() !=
-		 * null && inf.getSuggestAuthority().startsWith("applications")) { info
-		 * = inf; } } searchView.setSearchableInfo(info); }
-		 */
-
 		searchView.setOnQueryTextListener(this);
 	}
 
 	public boolean onQueryTextChange(String newText) {
-		searchValue.setText("Query = " + newText);
+		//searchValue.setText("Query = " + newText);
 		return false;
 	}
 
 	public boolean onQueryTextSubmit(String query) {
-		myAddress.setText("Query = " + query + " : submitted");
-		return false;
+		//myAddress.setText("Query = " + query + " : submitted");
+		XMLParser parser = new XMLParser();
+		URL = SERVER_URL + "?uid=adadas" + "&query=" +query+"&zip=60607" ; //+ getPostalCode();
+		//Log.i("zyz", getPostalCode());
+		//URL = "http://yodeals.herokuapp.com/hello?uid=adads&query=mexican&zip=61820";
+		String xml = parser.getXmlFromUrl(URL); // getting XML from URL
+		Document doc = parser.getDomElement(xml); // getting DOM element
+		
+		NodeList nl = doc.getElementsByTagName(DEAL_ROWS);
+		// looping through all the nodes from XML to create an HashMap
+		dealList.clear();
+		for (int i = 0; i < nl.getLength(); i++) {
+			// creating new HashMap
+			HashMap<String, String> map = new HashMap<String, String>();
+			Element e = (Element) nl.item(i);
+			// adding each child node to HashMap key => value
+			
+			myAddress.setText("Query = " + parser.getValue(e, DEAL_NAME) + " : submitted");
+			map.put(DEAL_NAME, parser.getValue(e, DEAL_NAME));
+			map.put(DEAL_COMPANY_NAME, parser.getValue(e, DEAL_COMPANY_NAME));
+			map.put(DEAL_RATING, parser.getValue(e, DEAL_RATING));
+			map.put(DISTANCE_TO_DEAL, parser.getValue(e, DISTANCE_TO_DEAL));
+			map.put(DEAL_IMG_URL, parser.getValue(e, DEAL_IMG_URL));
+			
+			map.put(DEAL_LATITUDE, parser.getValue(e, DEAL_LATITUDE));
+			map.put(DEAL_LONGITUDE, parser.getValue(e, DEAL_LONGITUDE));
+			
+			map.put(DEAL_ADDRESS, parser.getValue(e, DEAL_ADDRESS));
+			map.put(DEAL_CITY, parser.getValue(e, DEAL_CITY));	
+			map.put(DEAL_STATE, parser.getValue(e, DEAL_STATE));
+			map.put(DEAL_PHONE, parser.getValue(e, DEAL_PHONE));
+			
+			// adding HashList to ArrayList
+			dealList.add(map);
+		}
+		 
+		  list=(ListView)findViewById(R.id.list);
+		  adapter.notifyDataSetInvalidated();
+		  //adapter.notifyDataSetChanged(); 
+		 ((BaseAdapter)list.getAdapter()).notifyDataSetChanged();
+		return true;
 	}
 
 	public boolean onClose() {
@@ -155,6 +184,29 @@ public class YahooDealsMain extends Activity implements
 
 	protected boolean isAlwaysExpanded() {
 		return false;
+	}
+	
+	public String getPostalCode() {
+		LocationManager currentLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		Location location = currentLocationManager
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+		if (location != null) {
+			Geocoder geocoder = new Geocoder(getBaseContext(), Locale.ENGLISH);
+
+			List<Address> addresses;
+			try {
+				addresses = geocoder.getFromLocation(location.getLatitude(),
+						location.getLongitude(), 1);
+				if (addresses.size() > 0)
+					return addresses.get(0).getPostalCode();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return null;
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)

@@ -14,17 +14,21 @@
 
     <TextView
         android:id="@+id/searchValue"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF" >
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+        android:textColor="#FFFFFF" 
+        android:visibility="invisible"
+        >
     </TextView>
 
     <TextView
         android:id="@+id/myAddress"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF" >
-    </TextView>
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+        android:textColor="#FFFFFF"
+         android:visibility="invisible"
+         >
+    </TextView> 
 
     <TextView
         android:id="@+id/latitude"
