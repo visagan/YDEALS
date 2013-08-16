@@ -4,9 +4,25 @@ package com.example.yahoodealsapp;
 
 
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,10 +30,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.provider.Settings;
 
 
 
@@ -44,6 +62,8 @@ public class SelectedDeal extends Activity {
 		static final String DEAL_CITY = "CITY";
 		static final String DEAL_STATE = "STATE";
 		static final String DEAL_PHONE = "PHONE";
+		private static final float THRESHOLD = 0;
+		
 
 		/*END OF DEALS GLOBAL VALUES*/
 		
@@ -61,11 +81,16 @@ public class SelectedDeal extends Activity {
         String cost = in.getStringExtra(DEAL_COMPANY_NAME);
         String description = in.getStringExtra(DEAL_RATING);
         String url = in.getStringExtra(DEAL_IMG_URL);
+        String latitude = in.getStringExtra(DEAL_LATITUDE);
+        String longitude = in.getStringExtra(DEAL_LONGITUDE);
         // Displaying all values on the screen
         TextView lblName = (TextView) findViewById(R.id.artist);
         TextView lblCost = (TextView) findViewById(R.id.title);
         TextView lblDesc = (TextView) findViewById(R.id.duration);
-       
+        TextView lblDistance = (TextView) findViewById(R.id.distance);
+        
+        
+        
         
         //Bitmap bitmap = (Bitmap)this.getIntent().getParcelableExtra("selectedImage");  
         ImageView image = (ImageView)findViewById(R.id.list_image_selected);
@@ -73,11 +98,79 @@ public class SelectedDeal extends Activity {
         lblName.setText(name);
         lblCost.setText(cost);
         lblDesc.setText(description);
+        lblDistance
+		.setText(String.valueOf(determineEvent(latitude, longitude)));
         
         Bitmap bitmap=ImageLoader.memoryCache.get(url);
         if(bitmap!=null)
             image.setImageBitmap(bitmap);
         
+	}
+	public enum Event {
+		CLICK, CONVERSION, ACQUISTION
+	}
+	
+	private void notifyServer(String name, String cost, String latitude,
+			String longitude) {
+		// TODO Auto-generated method stub
+		Event event = determineEvent(latitude, longitude);
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpPost httppost = null;
+		switch (event) {
+		case CLICK:
+			httppost = new HttpPost("http://www.yoursite.com/script.php");
+			break;
+		case CONVERSION:
+			httppost = new HttpPost("http://www.yoursite.com/script.php");
+			break;
+		case ACQUISTION:
+			httppost = new HttpPost("http://www.yoursite.com/script.php");
+			break;
+		}
+
+		try {
+			// Add your data
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("id", "12345"));
+			nameValuePairs.add(new BasicNameValuePair("stringdata", "Hi"));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			// Execute HTTP Post Request
+			HttpResponse response = httpclient.execute(httppost);
+
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+
+	}
+
+	@SuppressWarnings("null")
+	private Event determineEvent(String latitude, String longitude) {
+
+		LocationManager currentLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		boolean enabled = currentLocationManager
+				.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		// Check if enabled and if not send user to the GSP settings
+		// Better solution would be to display a dialog and suggesting to
+		// go to the settings
+		if (!enabled) {
+			Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+			startActivity(intent);
+		}
+
+		//
+		Location location = currentLocationManager
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		float[] results = new float[1];
+		System.out.println(Double.valueOf(latitude));
+
+		Location.distanceBetween(Double.valueOf(latitude),
+				Double.valueOf(longitude), location.getLatitude(),
+				location.getLongitude(), results);
+		Log.w("myapp", String.valueOf(results[0]));
+		return results[0] > THRESHOLD ? Event.CLICK : Event.CONVERSION;
 	}
 
 	/**
