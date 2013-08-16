@@ -31,28 +31,35 @@ public final class R {
     }
     public static final class drawable {
         public static final int arrow=0x7f020000;
-        public static final int gradient_bg=0x7f020001;
-        public static final int gradient_bg_hover=0x7f020002;
-        public static final int heart=0x7f020003;
-        public static final int ic_action_search=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int icon=0x7f020006;
-        public static final int image_bg=0x7f020007;
-        public static final int list_selector=0x7f020008;
-        public static final int no_image=0x7f020009;
-        public static final int play=0x7f02000a;
-        public static final int rihanna=0x7f02000b;
-        public static final int yahoo_app=0x7f02000c;
-        public static final int yahoo_deals=0x7f02000d;
-        public static final int yahoo_deals1=0x7f02000e;
+        public static final int barcode=0x7f020001;
+        public static final int barcodeblackstripes=0x7f020002;
+        public static final int gradient_bg=0x7f020003;
+        public static final int gradient_bg_hover=0x7f020004;
+        public static final int heart=0x7f020005;
+        public static final int ic_action_search=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int icon=0x7f020008;
+        public static final int image_bg=0x7f020009;
+        public static final int list_selector=0x7f02000a;
+        public static final int no_image=0x7f02000b;
+        public static final int play=0x7f02000c;
+        public static final int rihanna=0x7f02000d;
+        public static final int yahoo_app=0x7f02000e;
+        public static final int yahoo_deals=0x7f02000f;
+        public static final int yahoo_deals1=0x7f020010;
     }
     public static final class id {
-        public static final int action_search=0x7f0b0012;
-        public static final int action_settings=0x7f0b0013;
+        public static final int action_search=0x7f0b0017;
+        public static final int action_settings=0x7f0b0018;
         public static final int artist=0x7f0b000c;
-        public static final int distance=0x7f0b0010;
+        public static final int dealAddress=0x7f0b0013;
+        public static final int dealBarCode=0x7f0b0014;
+        public static final int dealCompany=0x7f0b0011;
+        public static final int dealCouponCode=0x7f0b0015;
+        public static final int dealDistance=0x7f0b0012;
+        public static final int dealName=0x7f0b0010;
         public static final int duration=0x7f0b000d;
-        public static final int getdirections=0x7f0b0011;
+        public static final int getDirections=0x7f0b0016;
         public static final int latitude=0x7f0b0003;
         public static final int list=0x7f0b0005;
         public static final int list_image=0x7f0b0009;

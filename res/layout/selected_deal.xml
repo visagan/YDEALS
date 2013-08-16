@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:orientation="horizontal"
-    android:padding="5dp" 
-    >
+    android:padding="5dp" >
+
+    <!-- ListRow Left sied Thumbnail image -->
+
+    <LinearLayout
+        android:id="@+id/thumbnail_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip"
+        android:padding="3dip" >
+
+        <ImageView
+            android:id="@+id/list_image_selected"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
+            android:src="@drawable/yahoo_app" />
+    </LinearLayout>
 
     
-    <!--  ListRow Left sied Thumbnail image -->
-	<LinearLayout android:id="@+id/thumbnail_selected" 
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:padding="3dip"		
-        android:layout_alignParentLeft="true" 
-	    android:layout_marginRight="5dip">
-        
-		<ImageView     
-			android:id="@+id/list_image_selected"   
-	        android:layout_width="100dip"
-	        android:layout_height="100dip"
-	        android:src="@drawable/rihanna"/>
-        
-	</LinearLayout>
-
-	
-	<!-- Title Of Song-->
-
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/dealName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail_selected"
@@ -41,44 +38,72 @@
 	<!-- Artist Name -->
 
     <TextView
-        android:id="@+id/artist"
+        android:id="@+id/dealCompany"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_below="@id/dealName"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail_selected"
         android:text="Just gona stand there and ..."
         android:textColor="#FFFFFF"
-        android:textSize="10dip" />
-
-	<!-- Rightend Duration -->
-	  <TextView
-        android:id="@+id/distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/title"
-        android:layout_marginRight="5dip"/>
-
-    <TextView
-        android:id="@+id/duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/title"
-        android:layout_marginRight="5dip"
-        android:gravity="right"
-        android:text="5:45"
-        android:textColor="#FFFFFF"
-        android:textSize="10dip"
+        android:textSize="15dip"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/getdirections"
+	<!-- Rightend Duration -->
+    <TextView
+        android:id="@+id/dealDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Get Directions"/>
-
+        android:layout_below="@id/dealCompany"
+        android:layout_toRightOf="@+id/thumbnail_selected"
+        android:text="0"
+        android:layout_marginRight="5dip"
+        android:textSize="15dip"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        />
+    
+    
+    <TextView
+        android:id="@+id/dealAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/thumbnail_selected"
+        android:gravity="left"
+        android:text="Contact:"
+        android:layout_marginRight="5dip"
+        android:textSize="15dip"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        />
+    
+     <ImageView
+            android:id="@+id/dealBarCode"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/dealAddress"
+            android:src="@drawable/barcode" 
+            android:layout_centerHorizontal="true"/>
+     
+     <TextView
+        android:id="@+id/dealCouponCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/dealBarCode"
+        android:gravity="left"
+        android:text="Code: YD2013DEALS"
+        android:layout_marginRight="5dip"
+        android:textSize="10dip"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        />
+     
+     	<Button android:id="@+id/getDirections"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+     android:layout_below="@id/dealCouponCode"
+    android:text="Directions" />
+    
 </RelativeLayout>

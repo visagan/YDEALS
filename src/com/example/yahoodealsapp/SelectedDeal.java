@@ -69,6 +69,7 @@ public class SelectedDeal extends Activity {
 		/*END OF DEALS GLOBAL VALUES*/
 		
 		
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,32 +80,57 @@ public class SelectedDeal extends Activity {
         
         // Get XML values from previous intent
         String name = in.getStringExtra(DEAL_NAME);
-        String cost = in.getStringExtra(DEAL_COMPANY_NAME);
+        String companyName = in.getStringExtra(DEAL_COMPANY_NAME);
         String description = in.getStringExtra(DEAL_RATING);
         String url = in.getStringExtra(DEAL_IMG_URL);
         String latitude = in.getStringExtra(DEAL_LATITUDE);
         String longitude = in.getStringExtra(DEAL_LONGITUDE);
+        String Address = in.getStringExtra(DEAL_ADDRESS);
+        String City = in.getStringExtra(DEAL_CITY);
+        String State = in.getStringExtra(DEAL_STATE);
+        String Phone = in.getStringExtra(DEAL_PHONE);
+        String distance = in.getStringExtra(DISTANCE_TO_DEAL);
+        
+        String AddressWhole = "Contact:\n"+Address+"\n"+City+"\n"+State +"\n" +Phone;
+        
+        
+        TextView dealCompany = (TextView) findViewById(R.id.dealCompany);
+        TextView dealName = (TextView) findViewById(R.id.dealName);
+        TextView dealDistance = (TextView) findViewById(R.id.dealDistance);
+        TextView dealAddress = (TextView) findViewById(R.id.dealAddress);
+        ImageView dealBarCode = (ImageView) findViewById(R.id.dealBarCode);
+        
         // Displaying all values on the screen
-        TextView lblName = (TextView) findViewById(R.id.artist);
-        TextView lblCost = (TextView) findViewById(R.id.title);
-        TextView lblDesc = (TextView) findViewById(R.id.duration);
-        TextView lblDistance = (TextView) findViewById(R.id.distance);
+        /*
         
+        TextView dealRating = (TextView) findViewById(R.id.dealRating);
+       
         
-        
-        
+      
+        */
+    
+        dealCompany.setText(companyName);
+        dealName.setText(name);
+        dealDistance.setText("Distance to Deal: " +distance );
+        dealAddress.setText(AddressWhole);
+        dealBarCode.setAlpha(127);
         //Bitmap bitmap = (Bitmap)this.getIntent().getParcelableExtra("selectedImage");  
         ImageView image = (ImageView)findViewById(R.id.list_image_selected);
         //image.setImageBitmap(bitmap);
-        lblName.setText(name);
-        lblCost.setText(cost);
-        lblDesc.setText(description);
+        /*
+        
+        dealRating.setText("Rating: "+description);
+        
         lblDistance
 		.setText(String.valueOf(determineEvent(latitude, longitude)));
-        
+         
         Bitmap bitmap=ImageLoader.memoryCache.get(url);
         if(bitmap!=null)
             image.setImageBitmap(bitmap);
+        
+         */
+        
+        
         addActionListener(latitude, longitude);
 	}
 
@@ -126,9 +152,9 @@ public class SelectedDeal extends Activity {
 	};
 	
 	private void addActionListener(String latitude, String longitude) {
-		Button button= (Button) findViewById(R.id.getdirections);
+		/*Button button= (Button) findViewById(R.id.getDirections);
 		button.setOnClickListener(new MyListener(latitude, longitude));
-		
+		*/
 	}
 	public enum Event {
 		CLICK, CONVERSION, ACQUISTION
