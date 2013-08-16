@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
@@ -104,7 +105,18 @@ public class SelectedDeal extends Activity {
         Bitmap bitmap=ImageLoader.memoryCache.get(url);
         if(bitmap!=null)
             image.setImageBitmap(bitmap);
-        
+        addActionListener(latitude, longitude);
+	}
+	private void addActionListener(String latitude, String longitude) {
+		Button button= (Button) findViewById(R.id.getdirections);
+		button.setOnClickListener(new View.OnClickListener() {
+		    @Override
+		    public void onClick(View v) {
+		    	String uri = "geo:"+ "-17.89" + "," + "22.89";
+		    	startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri)));
+		    }
+		});
+		
 	}
 	public enum Event {
 		CLICK, CONVERSION, ACQUISTION
