@@ -90,6 +90,7 @@ public class YahooDealsMain extends Activity implements
 	TextView myAddress;
 
 	TextView searchValue;
+	
 
 	/*
 	 * @Override public boolean onCreateOptionsMenu(Menu menu) { MenuInflater
@@ -240,6 +241,7 @@ public class YahooDealsMain extends Activity implements
 		ActionBar actionBar = getActionBar();
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color
 				.parseColor("#10F0F0F0")));
+		
 		// actionBar.setStackedBackgroundDrawable(new
 		// ColorDrawable(Color.parseColor("#550000ff")));
 		setContentView(R.layout.activity_yahoo_deals_main);
@@ -352,7 +354,7 @@ public class YahooDealsMain extends Activity implements
 				LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
 
 		/******************* GEO LOCATION SEARCH ENDS **************/
-
+		URL = "http://yodeals.herokuapp.com/hello?uid=adads&query=pizza&zip="+getPostalCode();
 		XMLParser parser = new XMLParser();
 		String xml = parser.getXmlFromUrl(URL); // getting XML from URL
 		Document doc = parser.getDomElement(xml); // getting DOM element
