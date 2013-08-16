@@ -177,11 +177,13 @@ public class SelectedDeal extends Activity {
 				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		float[] results = new float[1];
 		System.out.println(Double.valueOf(latitude));
-
+		
+		if(location != null) {
 		Location.distanceBetween(Double.valueOf(latitude),
 				Double.valueOf(longitude), location.getLatitude(),
 				location.getLongitude(), results);
 		Log.w("myapp", String.valueOf(results[0]));
+		}
 		return results[0] > THRESHOLD ? Event.CLICK : Event.CONVERSION;
 	}
 
