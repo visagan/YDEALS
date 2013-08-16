@@ -47,11 +47,12 @@ public final class R {
         public static final int yahoo_deals1=0x7f02000e;
     }
     public static final class id {
-        public static final int action_search=0x7f0b0011;
-        public static final int action_settings=0x7f0b0012;
+        public static final int action_search=0x7f0b0012;
+        public static final int action_settings=0x7f0b0013;
         public static final int artist=0x7f0b000c;
         public static final int distance=0x7f0b0010;
         public static final int duration=0x7f0b000d;
+        public static final int getdirections=0x7f0b0011;
         public static final int latitude=0x7f0b0003;
         public static final int list=0x7f0b0005;
         public static final int list_image=0x7f0b0009;

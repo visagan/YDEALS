@@ -107,15 +107,27 @@ public class SelectedDeal extends Activity {
             image.setImageBitmap(bitmap);
         addActionListener(latitude, longitude);
 	}
+
+	class MyListener implements View.OnClickListener {
+
+		String latitude, longitude;
+
+		public MyListener(String latitude, String longitude) {
+			this.latitude = latitude;
+			this.longitude = longitude;
+		}
+
+		@Override
+		public void onClick(View v) {
+			String uri = "geo:"+ latitude + "," + longitude;
+	    	startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri)));
+		}
+
+	};
+	
 	private void addActionListener(String latitude, String longitude) {
 		Button button= (Button) findViewById(R.id.getdirections);
-		button.setOnClickListener(new View.OnClickListener() {
-		    @Override
-		    public void onClick(View v) {
-		    	String uri = "geo:"+ "-17.89" + "," + "22.89";
-		    	startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri)));
-		    }
-		});
+		button.setOnClickListener(new MyListener(latitude, longitude));
 		
 	}
 	public enum Event {
