@@ -47,9 +47,9 @@ public class YahooDealsAdapter extends BaseAdapter {
             vi = inflater.inflate(R.layout.list_row, null);
 
         //Gets the View from the layout...
-        TextView title = (TextView)vi.findViewById(R.id.title); // title
-        TextView artist = (TextView)vi.findViewById(R.id.artist); // artist name
-        TextView duration = (TextView)vi.findViewById(R.id.duration); // duration
+        TextView dealName = (TextView)vi.findViewById(R.id.dealName); // title
+        TextView dealCompany = (TextView)vi.findViewById(R.id.dealCompany); // artist name
+        TextView dealRating = (TextView)vi.findViewById(R.id.dealRating); // duration
         ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
         TextView url = (TextView)vi.findViewById(R.id.url);
         HashMap<String, String> song = new HashMap<String, String>();
@@ -57,9 +57,9 @@ public class YahooDealsAdapter extends BaseAdapter {
         
         //Decorates the views from the values put in the intent..
         // Setting all values in listview
-        title.setText(song.get(YahooDealsMain.DEAL_NAME));
-        artist.setText(song.get(YahooDealsMain.DEAL_COMPANY_NAME));
-        duration.setText(song.get(YahooDealsMain.DEAL_RATING));
+        dealName.setText(song.get(YahooDealsMain.DEAL_NAME));
+        dealCompany.setText(song.get(YahooDealsMain.DEAL_COMPANY_NAME));
+        dealRating.setText("Rating: "+song.get(YahooDealsMain.DEAL_RATING));
         imageLoader.DisplayImage(song.get(YahooDealsMain.DEAL_IMG_URL), thumb_image);
         url.setText(song.get(YahooDealsMain.DEAL_IMG_URL));
         url.setVisibility(View.INVISIBLE);

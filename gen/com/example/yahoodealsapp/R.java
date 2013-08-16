@@ -49,17 +49,16 @@ public final class R {
         public static final int yahoo_deals1=0x7f020010;
     }
     public static final class id {
-        public static final int action_search=0x7f0b0017;
-        public static final int action_settings=0x7f0b0018;
-        public static final int artist=0x7f0b000c;
-        public static final int dealAddress=0x7f0b0013;
-        public static final int dealBarCode=0x7f0b0014;
-        public static final int dealCompany=0x7f0b0011;
-        public static final int dealCouponCode=0x7f0b0015;
-        public static final int dealDistance=0x7f0b0012;
-        public static final int dealName=0x7f0b0010;
-        public static final int duration=0x7f0b000d;
-        public static final int getDirections=0x7f0b0016;
+        public static final int action_search=0x7f0b0015;
+        public static final int action_settings=0x7f0b0016;
+        public static final int dealAddress=0x7f0b0011;
+        public static final int dealBarCode=0x7f0b0012;
+        public static final int dealCompany=0x7f0b000c;
+        public static final int dealCouponCode=0x7f0b0013;
+        public static final int dealDistance=0x7f0b0010;
+        public static final int dealName=0x7f0b000b;
+        public static final int dealRating=0x7f0b000d;
+        public static final int getDirections=0x7f0b0014;
         public static final int latitude=0x7f0b0003;
         public static final int list=0x7f0b0005;
         public static final int list_image=0x7f0b0009;
@@ -71,7 +70,6 @@ public final class R {
         public static final int section_label=0x7f0b0006;
         public static final int thumbnail=0x7f0b0008;
         public static final int thumbnail_selected=0x7f0b000e;
-        public static final int title=0x7f0b000b;
         public static final int url=0x7f0b000a;
         public static final int yahooMain=0x7f0b0000;
     }

@@ -73,7 +73,7 @@ public class SelectedDeal extends Activity {
 		// Get XML values from previous intent
 		String name = in.getStringExtra(DEAL_NAME);
 		String companyName = in.getStringExtra(DEAL_COMPANY_NAME);
-		String description = in.getStringExtra(DEAL_RATING);
+		String rating = in.getStringExtra(DEAL_RATING);
 		String url = in.getStringExtra(DEAL_IMG_URL);
 		String latitude = in.getStringExtra(DEAL_LATITUDE);
 		String longitude = in.getStringExtra(DEAL_LONGITUDE);
@@ -90,25 +90,27 @@ public class SelectedDeal extends Activity {
 		TextView dealName = (TextView) findViewById(R.id.dealName);
 		TextView dealDistance = (TextView) findViewById(R.id.dealDistance);
 		TextView dealAddress = (TextView) findViewById(R.id.dealAddress);
+		//TextView dealRating = (TextView) findViewById(R.id.dealRating);
 		ImageView dealBarCode = (ImageView) findViewById(R.id.dealBarCode);
 
 		// Displaying all values on the screen
 		/*
 		 * 
-		 * TextView dealRating = (TextView) findViewById(R.id.dealRating);
+		 * 
 		 */
 
 		dealCompany.setText(companyName);
 		dealName.setText(name);
-		dealDistance.setText("Distance to Deal: " + distance);
+		dealDistance.setText("Distance to Deal: " + distance + "\nRating: "+rating );
 		dealAddress.setText(AddressWhole);
 		dealBarCode.setAlpha(127);
+		//dealRating.setText("Rating: ");
 		// Bitmap bitmap =
 		// (Bitmap)this.getIntent().getParcelableExtra("selectedImage");
 		ImageView image = (ImageView) findViewById(R.id.list_image_selected);
 		// image.setImageBitmap(bitmap);
 
-		// dealRating.setText("Rating: "+description);
+		// 
 
 		Bitmap bitmap = ImageLoader.memoryCache.get(url);
 		if (bitmap != null)

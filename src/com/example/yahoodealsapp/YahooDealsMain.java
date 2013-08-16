@@ -136,7 +136,7 @@ public class YahooDealsMain extends Activity implements
 	public boolean onQueryTextSubmit(String query) {
 		//myAddress.setText("Query = " + query + " : submitted");
 		XMLParser parser = new XMLParser();
-		URL = SERVER_URL + "?uid=adadas" + "&query=" +query+"&zip=60607" ; //+ getPostalCode();
+		URL = SERVER_URL + "?uid=adadas" + "&query=" +query+"&zip=" + getPostalCode();
 		//Log.i("zyz", getPostalCode());
 		//URL = "http://yodeals.herokuapp.com/hello?uid=adads&query=mexican&zip=61820";
 		String xml = parser.getXmlFromUrl(URL); // getting XML from URL
